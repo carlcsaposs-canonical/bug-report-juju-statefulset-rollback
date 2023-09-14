@@ -30,7 +30,7 @@ Pod Template:
       --containeragent-pebble-dir
       /containeragent/pebble
       --charm-modified-version
-      1
+      2
       --data-dir
       /var/lib/juju
       --bin-dir
@@ -97,7 +97,7 @@ Pod Template:
     SizeLimit:  <unset>
 Volume Claims:  <none>
 Events:
-  Type    Reason            Age                 From                    Message
-  ----    ------            ----                ----                    -------
-  Normal  SuccessfulDelete  14s                 statefulset-controller  delete Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
-  Normal  SuccessfulCreate  11s (x2 over 7m5s)  statefulset-controller  create Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
+  Type    Reason            Age                  From                    Message
+  ----    ------            ----                 ----                    -------
+  Normal  SuccessfulDelete  62s (x2 over 7m56s)  statefulset-controller  delete Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulCreate  60s (x3 over 14m)    statefulset-controller  create Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
