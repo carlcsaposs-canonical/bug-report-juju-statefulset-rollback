@@ -1,0 +1,151 @@
+Name:             mysql-router-k8s-2
+Namespace:        foo1
+Priority:         0
+Service Account:  mysql-router-k8s
+Node:             dev-3/10.150.15.234
+Start Time:       Fri, 15 Sep 2023 13:28:17 +0000
+Labels:           app.kubernetes.io/name=mysql-router-k8s
+                  controller-revision-hash=mysql-router-k8s-54d775d564
+                  statefulset.kubernetes.io/pod-name=mysql-router-k8s-2
+Annotations:      cni.projectcalico.org/containerID: 6aa0559868ab57771c513f383527e63b3ab06bc2c2942d468e37f6c808c2cf69
+                  cni.projectcalico.org/podIP: 10.1.236.60/32
+                  cni.projectcalico.org/podIPs: 10.1.236.60/32
+                  controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
+                  juju.is/version: 3.1.5
+                  model.juju.is/id: 645c493c-8ee7-4a2f-8b87-44b7308ff122
+                  unit.juju.is/id: mysql-router-k8s/2
+Status:           Running
+IP:               10.1.236.60
+IPs:
+  IP:           10.1.236.60
+Controlled By:  StatefulSet/mysql-router-k8s
+Init Containers:
+  charm-init:
+    Container ID:  containerd://8a9a86ed7b9358c50566f2faea356ba3ca4df92187428b763d5b7eb168dbd5d9
+    Image:         jujusolutions/jujud-operator:3.1.5
+    Image ID:      docker.io/jujusolutions/jujud-operator@sha256:9c11f4636e8bb5f2543db72f35d8cab823d765ac6bd7ba4551b2636746c0cfe5
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/containeragent
+    Args:
+      init
+      --containeragent-pebble-dir
+      /containeragent/pebble
+      --charm-modified-version
+      0
+      --data-dir
+      /var/lib/juju
+      --bin-dir
+      /charm/bin
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 15 Sep 2023 13:28:18 +0000
+      Finished:     Fri, 15 Sep 2023 13:28:18 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment Variables from:
+      mysql-router-k8s-application-config  Secret  Optional: false
+    Environment:
+      JUJU_CONTAINER_NAMES:  mysql-router
+      JUJU_K8S_POD_NAME:     mysql-router-k8s-2 (v1:metadata.name)
+      JUJU_K8S_POD_UUID:      (v1:metadata.uid)
+    Mounts:
+      /charm/bin from charm-data (rw,path="charm/bin")
+      /charm/containers from charm-data (rw,path="charm/containers")
+      /containeragent/pebble from charm-data (rw,path="containeragent/pebble")
+      /var/lib/juju from charm-data (rw,path="var/lib/juju")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gn7cv (ro)
+Containers:
+  charm:
+    Container ID:  containerd://eb81753db2187e753af8e2892cbf7a7ed4ec27b0026a8456feadc987e756dc4e
+    Image:         jujusolutions/charm-base:ubuntu-22.04
+    Image ID:      docker.io/jujusolutions/charm-base@sha256:b483f48cf0f6c85d955290d0b826b90f68de186e15e4c98f7d220bae8913f27e
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /charm/bin/pebble
+    Args:
+      run
+      --http
+      :38812
+      --verbose
+    State:          Running
+      Started:      Fri, 15 Sep 2023 13:28:19 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:38812/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Readiness:      http-get http://:38812/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
+    Startup:        http-get http://:38812/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Environment:
+      JUJU_CONTAINER_NAMES:  mysql-router
+      HTTP_PROBE_PORT:       3856
+    Mounts:
+      /charm/bin from charm-data (ro,path="charm/bin")
+      /charm/containers from charm-data (rw,path="charm/containers")
+      /var/lib/juju from charm-data (rw,path="var/lib/juju")
+      /var/lib/pebble/default from charm-data (rw,path="containeragent/pebble")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gn7cv (ro)
+  mysql-router:
+    Container ID:  containerd://622aab4cfddee03eb60263346f5d0aacf1130c295c2c047d4f952f4fe97aac44
+    Image:         registry.jujucharms.com/charm/g78qli3013qicvevb3oj4z8u0zhjod1agws2d/mysql-router-image@sha256:3d665bce5076c13f430d5ab2e0864b3677698a33b4f635fc829ecbe14089ae45
+    Image ID:      ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /charm/bin/pebble
+    Args:
+      run
+      --create-dirs
+      --hold
+      --http
+      :38813
+      --verbose
+    State:          Running
+      Started:      Fri, 15 Sep 2023 13:28:19 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:38813/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Readiness:      http-get http://:38813/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
+    Environment:
+      JUJU_CONTAINER_NAME:  mysql-router
+      PEBBLE_SOCKET:        /charm/container/pebble.socket
+    Mounts:
+      /charm/bin/pebble from charm-data (ro,path="charm/bin/pebble")
+      /charm/container from charm-data (rw,path="charm/containers/mysql-router")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gn7cv (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  charm-data:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:  <unset>
+  kube-api-access-gn7cv:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/arch=amd64
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  47s   default-scheduler  Successfully assigned foo1/mysql-router-k8s-2 to dev-3
+  Normal  Pulled     46s   kubelet            Container image "jujusolutions/jujud-operator:3.1.5" already present on machine
+  Normal  Created    46s   kubelet            Created container charm-init
+  Normal  Started    46s   kubelet            Started container charm-init
+  Normal  Pulled     45s   kubelet            Container image "jujusolutions/charm-base:ubuntu-22.04" already present on machine
+  Normal  Created    45s   kubelet            Created container charm
+  Normal  Started    45s   kubelet            Started container charm
+  Normal  Pulled     45s   kubelet            Container image "registry.jujucharms.com/charm/g78qli3013qicvevb3oj4z8u0zhjod1agws2d/mysql-router-image@sha256:3d665bce5076c13f430d5ab2e0864b3677698a33b4f635fc829ecbe14089ae45" already present on machine
+  Normal  Created    45s   kubelet            Created container mysql-router
+  Normal  Started    45s   kubelet            Started container mysql-router
