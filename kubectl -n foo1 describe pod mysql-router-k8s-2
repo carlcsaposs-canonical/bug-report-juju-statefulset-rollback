@@ -3,25 +3,25 @@ Namespace:        foo1
 Priority:         0
 Service Account:  mysql-router-k8s
 Node:             dev-3/10.150.15.234
-Start Time:       Thu, 14 Sep 2023 18:33:32 +0000
+Start Time:       Thu, 14 Sep 2023 18:40:26 +0000
 Labels:           app.kubernetes.io/name=mysql-router-k8s
-                  controller-revision-hash=mysql-router-k8s-5f6966d569
+                  controller-revision-hash=mysql-router-k8s-8475b4b59d
                   statefulset.kubernetes.io/pod-name=mysql-router-k8s-2
-Annotations:      cni.projectcalico.org/containerID: 36dfdae78b5fd6d924621ba7a707311aaf4e0277284d89f43e011c6a5e6c7be1
-                  cni.projectcalico.org/podIP: 10.1.236.20/32
-                  cni.projectcalico.org/podIPs: 10.1.236.20/32
+Annotations:      cni.projectcalico.org/containerID: 7ee53ab85bcda89d81d99c063ab226cc75969cb7ffb642d9fec7848604e60e29
+                  cni.projectcalico.org/podIP: 10.1.236.48/32
+                  cni.projectcalico.org/podIPs: 10.1.236.48/32
                   controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
                   juju.is/version: 3.1.5
                   model.juju.is/id: 7f98bf8a-7073-4056-8598-a98152e4d480
                   unit.juju.is/id: mysql-router-k8s/2
 Status:           Running
-IP:               10.1.236.20
+IP:               10.1.236.48
 IPs:
-  IP:           10.1.236.20
+  IP:           10.1.236.48
 Controlled By:  StatefulSet/mysql-router-k8s
 Init Containers:
   charm-init:
-    Container ID:  containerd://038f3cf4997aee8233540b0351fce6c93ce1af63154b48ee0ae4f8cebcb5786f
+    Container ID:  containerd://c519b5b9c9ac61e5eea58145da48c79a1c6962d92b2ddfb29f781de29a32e04c
     Image:         jujusolutions/jujud-operator:3.1.5
     Image ID:      docker.io/jujusolutions/jujud-operator@sha256:9c11f4636e8bb5f2543db72f35d8cab823d765ac6bd7ba4551b2636746c0cfe5
     Port:          <none>
@@ -33,7 +33,7 @@ Init Containers:
       --containeragent-pebble-dir
       /containeragent/pebble
       --charm-modified-version
-      0
+      1
       --data-dir
       /var/lib/juju
       --bin-dir
@@ -41,8 +41,8 @@ Init Containers:
     State:          Terminated
       Reason:       Completed
       Exit Code:    0
-      Started:      Thu, 14 Sep 2023 18:33:33 +0000
-      Finished:     Thu, 14 Sep 2023 18:33:33 +0000
+      Started:      Thu, 14 Sep 2023 18:40:26 +0000
+      Finished:     Thu, 14 Sep 2023 18:40:26 +0000
     Ready:          True
     Restart Count:  0
     Environment Variables from:
@@ -56,10 +56,10 @@ Init Containers:
       /charm/containers from charm-data (rw,path="charm/containers")
       /containeragent/pebble from charm-data (rw,path="containeragent/pebble")
       /var/lib/juju from charm-data (rw,path="var/lib/juju")
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cr92p (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tbgzc (ro)
 Containers:
   charm:
-    Container ID:  containerd://7b59aa0c27b817da13aac58e6d7e2e7a36a6ca8e90537dcb0ebcf3c0a3193dc5
+    Container ID:  containerd://302085014e04413debaab7130cb8cfe6a7593d4859ff6f4cdaa9bc2156d7975e
     Image:         jujusolutions/charm-base:ubuntu-22.04
     Image ID:      docker.io/jujusolutions/charm-base@sha256:b483f48cf0f6c85d955290d0b826b90f68de186e15e4c98f7d220bae8913f27e
     Port:          <none>
@@ -72,8 +72,8 @@ Containers:
       :38812
       --verbose
     State:          Running
-      Started:      Thu, 14 Sep 2023 18:33:35 +0000
-    Ready:          True
+      Started:      Thu, 14 Sep 2023 18:40:28 +0000
+    Ready:          False
     Restart Count:  0
     Liveness:       http-get http://:38812/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
     Readiness:      http-get http://:38812/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
@@ -86,9 +86,9 @@ Containers:
       /charm/containers from charm-data (rw,path="charm/containers")
       /var/lib/juju from charm-data (rw,path="var/lib/juju")
       /var/lib/pebble/default from charm-data (rw,path="containeragent/pebble")
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cr92p (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tbgzc (ro)
   mysql-router:
-    Container ID:  containerd://0291c411d20c29753d58cf9974848a260683fd8d6c88b437fa8cf3085d2352f1
+    Container ID:  containerd://63c7b491f8bbfdc2e5303161931370d0e93d881a1ea5fb19ab15ae8e24836be6
     Image:         ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1
     Image ID:      ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1
     Port:          <none>
@@ -103,8 +103,8 @@ Containers:
       :38813
       --verbose
     State:          Running
-      Started:      Thu, 14 Sep 2023 18:33:35 +0000
-    Ready:          True
+      Started:      Thu, 14 Sep 2023 18:40:28 +0000
+    Ready:          False
     Restart Count:  0
     Liveness:       http-get http://:38813/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
     Readiness:      http-get http://:38813/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
@@ -114,19 +114,19 @@ Containers:
     Mounts:
       /charm/bin/pebble from charm-data (ro,path="charm/bin/pebble")
       /charm/container from charm-data (rw,path="charm/containers/mysql-router")
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cr92p (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tbgzc (ro)
 Conditions:
   Type              Status
   Initialized       True
-  Ready             True
-  ContainersReady   True
+  Ready             False
+  ContainersReady   False
   PodScheduled      True
 Volumes:
   charm-data:
     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
     Medium:
     SizeLimit:  <unset>
-  kube-api-access-cr92p:
+  kube-api-access-tbgzc:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -139,13 +139,13 @@ Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists fo
 Events:
   Type    Reason     Age   From               Message
   ----    ------     ----  ----               -------
-  Normal  Scheduled  103s  default-scheduler  Successfully assigned foo1/mysql-router-k8s-2 to dev-3
-  Normal  Pulled     102s  kubelet            Container image "jujusolutions/jujud-operator:3.1.5" already present on machine
-  Normal  Created    102s  kubelet            Created container charm-init
-  Normal  Started    102s  kubelet            Started container charm-init
-  Normal  Pulled     101s  kubelet            Container image "jujusolutions/charm-base:ubuntu-22.04" already present on machine
-  Normal  Created    101s  kubelet            Created container charm
-  Normal  Started    100s  kubelet            Started container charm
-  Normal  Pulled     100s  kubelet            Container image "ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1" already present on machine
-  Normal  Created    100s  kubelet            Created container mysql-router
-  Normal  Started    100s  kubelet            Started container mysql-router
+  Normal  Scheduled  29s   default-scheduler  Successfully assigned foo1/mysql-router-k8s-2 to dev-3
+  Normal  Pulled     29s   kubelet            Container image "jujusolutions/jujud-operator:3.1.5" already present on machine
+  Normal  Created    29s   kubelet            Created container charm-init
+  Normal  Started    29s   kubelet            Started container charm-init
+  Normal  Pulled     28s   kubelet            Container image "jujusolutions/charm-base:ubuntu-22.04" already present on machine
+  Normal  Created    27s   kubelet            Created container charm
+  Normal  Started    27s   kubelet            Started container charm
+  Normal  Pulled     27s   kubelet            Container image "ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1" already present on machine
+  Normal  Created    27s   kubelet            Created container mysql-router
+  Normal  Started    27s   kubelet            Started container mysql-router

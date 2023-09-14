@@ -1,4 +1,5 @@
 statefulset.apps/mysql-router-k8s
 REVISION  CHANGE-CAUSE
 1         <none>
+2         <none>
 

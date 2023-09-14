@@ -1,2 +1,3 @@
 NAME                          CONTROLLER                          REVISION   AGE
-mysql-router-k8s-5f6966d569   statefulset.apps/mysql-router-k8s   1          5m43s
+mysql-router-k8s-5f6966d569   statefulset.apps/mysql-router-k8s   1          7m43s
+mysql-router-k8s-8475b4b59d   statefulset.apps/mysql-router-k8s   2          52s
