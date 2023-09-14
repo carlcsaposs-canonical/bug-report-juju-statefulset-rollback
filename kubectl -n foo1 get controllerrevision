@@ -1,0 +1,2 @@
+NAME                          CONTROLLER                          REVISION   AGE
+mysql-router-k8s-5f6966d569   statefulset.apps/mysql-router-k8s   1          5m43s

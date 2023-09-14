@@ -1,0 +1,104 @@
+Name:               mysql-router-k8s
+Namespace:          foo1
+CreationTimestamp:  Thu, 14 Sep 2023 18:33:32 +0000
+Selector:           app.kubernetes.io/name=mysql-router-k8s
+Labels:             app.kubernetes.io/managed-by=juju
+                    app.kubernetes.io/name=mysql-router-k8s
+Annotations:        app.juju.is/uuid: 09ba835b
+                    controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
+                    juju.is/version: 3.1.5
+                    model.juju.is/id: 7f98bf8a-7073-4056-8598-a98152e4d480
+Replicas:           3 desired | 3 total
+Update Strategy:    RollingUpdate
+  Partition:        2
+Pods Status:        3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:           app.kubernetes.io/name=mysql-router-k8s
+  Annotations:      controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
+                    juju.is/version: 3.1.5
+                    model.juju.is/id: 7f98bf8a-7073-4056-8598-a98152e4d480
+  Service Account:  mysql-router-k8s
+  Init Containers:
+   charm-init:
+    Image:      jujusolutions/jujud-operator:3.1.5
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /opt/containeragent
+    Args:
+      init
+      --containeragent-pebble-dir
+      /containeragent/pebble
+      --charm-modified-version
+      0
+      --data-dir
+      /var/lib/juju
+      --bin-dir
+      /charm/bin
+    Environment Variables from:
+      mysql-router-k8s-application-config  Secret  Optional: false
+    Environment:
+      JUJU_CONTAINER_NAMES:  mysql-router
+      JUJU_K8S_POD_NAME:      (v1:metadata.name)
+      JUJU_K8S_POD_UUID:      (v1:metadata.uid)
+    Mounts:
+      /charm/bin from charm-data (rw,path="charm/bin")
+      /charm/containers from charm-data (rw,path="charm/containers")
+      /containeragent/pebble from charm-data (rw,path="containeragent/pebble")
+      /var/lib/juju from charm-data (rw,path="var/lib/juju")
+  Containers:
+   charm:
+    Image:      jujusolutions/charm-base:ubuntu-22.04
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /charm/bin/pebble
+    Args:
+      run
+      --http
+      :38812
+      --verbose
+    Liveness:   http-get http://:38812/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Readiness:  http-get http://:38812/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
+    Startup:    http-get http://:38812/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Environment:
+      JUJU_CONTAINER_NAMES:  mysql-router
+      HTTP_PROBE_PORT:       3856
+    Mounts:
+      /charm/bin from charm-data (ro,path="charm/bin")
+      /charm/containers from charm-data (rw,path="charm/containers")
+      /var/lib/juju from charm-data (rw,path="var/lib/juju")
+      /var/lib/pebble/default from charm-data (rw,path="containeragent/pebble")
+   mysql-router:
+    Image:      ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /charm/bin/pebble
+    Args:
+      run
+      --create-dirs
+      --hold
+      --http
+      :38813
+      --verbose
+    Liveness:   http-get http://:38813/v1/health%3Flevel=alive delay=30s timeout=1s period=5s #success=1 #failure=1
+    Readiness:  http-get http://:38813/v1/health%3Flevel=ready delay=30s timeout=1s period=5s #success=1 #failure=1
+    Environment:
+      JUJU_CONTAINER_NAME:  mysql-router
+      PEBBLE_SOCKET:        /charm/container/pebble.socket
+    Mounts:
+      /charm/bin/pebble from charm-data (ro,path="charm/bin/pebble")
+      /charm/container from charm-data (rw,path="charm/containers/mysql-router")
+  Volumes:
+   charm-data:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:  <unset>
+Volume Claims:  <none>
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  67s   statefulset-controller  create Pod mysql-router-k8s-0 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulCreate  67s   statefulset-controller  create Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulCreate  67s   statefulset-controller  create Pod mysql-router-k8s-1 in StatefulSet mysql-router-k8s successful

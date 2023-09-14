@@ -1,0 +1,216 @@
+Name:         mysql-router-k8s-5f6966d569
+Namespace:    foo1
+Labels:       app.kubernetes.io/name=mysql-router-k8s
+              controller.kubernetes.io/hash=5f6966d569
+Annotations:  app.juju.is/uuid: 09ba835b
+              controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
+              juju.is/version: 3.1.5
+              model.juju.is/id: 7f98bf8a-7073-4056-8598-a98152e4d480
+API Version:  apps/v1
+Data:
+  Spec:
+    Template:
+      $patch:  replace
+      Metadata:
+        Annotations:
+          controller.juju.is/id:  d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
+          juju.is/version:        3.1.5
+          model.juju.is/id:       7f98bf8a-7073-4056-8598-a98152e4d480
+        Creation Timestamp:       <nil>
+        Labels:
+          app.kubernetes.io/name:  mysql-router-k8s
+      Spec:
+        Automount Service Account Token:  true
+        Containers:
+          Args:
+            run
+            --http
+            :38812
+            --verbose
+          Command:
+            /charm/bin/pebble
+          Env:
+            Name:             JUJU_CONTAINER_NAMES
+            Value:            mysql-router
+            Name:             HTTP_PROBE_PORT
+            Value:            3856
+          Image:              jujusolutions/charm-base:ubuntu-22.04
+          Image Pull Policy:  IfNotPresent
+          Liveness Probe:
+            Failure Threshold:  1
+            Http Get:
+              Path:                 /v1/health?level=alive
+              Port:                 38812
+              Scheme:               HTTP
+            Initial Delay Seconds:  30
+            Period Seconds:         5
+            Success Threshold:      1
+            Timeout Seconds:        1
+          Name:                     charm
+          Readiness Probe:
+            Failure Threshold:  1
+            Http Get:
+              Path:                 /v1/health?level=ready
+              Port:                 38812
+              Scheme:               HTTP
+            Initial Delay Seconds:  30
+            Period Seconds:         5
+            Success Threshold:      1
+            Timeout Seconds:        1
+          Resources:
+          Security Context:
+            Run As Group:  0
+            Run As User:   0
+          Startup Probe:
+            Failure Threshold:  1
+            Http Get:
+              Path:                    /v1/health?level=alive
+              Port:                    38812
+              Scheme:                  HTTP
+            Initial Delay Seconds:     30
+            Period Seconds:            5
+            Success Threshold:         1
+            Timeout Seconds:           1
+          Termination Message Path:    /dev/termination-log
+          Termination Message Policy:  File
+          Volume Mounts:
+            Mount Path:  /charm/bin
+            Name:        charm-data
+            Read Only:   true
+            Sub Path:    charm/bin
+            Mount Path:  /var/lib/juju
+            Name:        charm-data
+            Sub Path:    var/lib/juju
+            Mount Path:  /charm/containers
+            Name:        charm-data
+            Sub Path:    charm/containers
+            Mount Path:  /var/lib/pebble/default
+            Name:        charm-data
+            Sub Path:    containeragent/pebble
+          Working Dir:   /var/lib/juju
+          Args:
+            run
+            --create-dirs
+            --hold
+            --http
+            :38813
+            --verbose
+          Command:
+            /charm/bin/pebble
+          Env:
+            Name:             JUJU_CONTAINER_NAME
+            Value:            mysql-router
+            Name:             PEBBLE_SOCKET
+            Value:            /charm/container/pebble.socket
+          Image:              ghcr.io/canonical/charmed-mysql@sha256:3b6a4a63971acec3b71a0178cd093014a695ddf7c31d91d56ebb110eec6cdbe1
+          Image Pull Policy:  IfNotPresent
+          Liveness Probe:
+            Failure Threshold:  1
+            Http Get:
+              Path:                 /v1/health?level=alive
+              Port:                 38813
+              Scheme:               HTTP
+            Initial Delay Seconds:  30
+            Period Seconds:         5
+            Success Threshold:      1
+            Timeout Seconds:        1
+          Name:                     mysql-router
+          Readiness Probe:
+            Failure Threshold:  1
+            Http Get:
+              Path:                 /v1/health?level=ready
+              Port:                 38813
+              Scheme:               HTTP
+            Initial Delay Seconds:  30
+            Period Seconds:         5
+            Success Threshold:      1
+            Timeout Seconds:        1
+          Resources:
+          Security Context:
+            Run As Group:              0
+            Run As User:               0
+          Termination Message Path:    /dev/termination-log
+          Termination Message Policy:  File
+          Volume Mounts:
+            Mount Path:  /charm/bin/pebble
+            Name:        charm-data
+            Read Only:   true
+            Sub Path:    charm/bin/pebble
+            Mount Path:  /charm/container
+            Name:        charm-data
+            Sub Path:    charm/containers/mysql-router
+        Dns Policy:      ClusterFirst
+        Init Containers:
+          Args:
+            init
+            --containeragent-pebble-dir
+            /containeragent/pebble
+            --charm-modified-version
+            0
+            --data-dir
+            /var/lib/juju
+            --bin-dir
+            /charm/bin
+          Command:
+            /opt/containeragent
+          Env:
+            Name:   JUJU_CONTAINER_NAMES
+            Value:  mysql-router
+            Name:   JUJU_K8S_POD_NAME
+            Value From:
+              Field Ref:
+                API Version:  v1
+                Field Path:   metadata.name
+            Name:             JUJU_K8S_POD_UUID
+            Value From:
+              Field Ref:
+                API Version:  v1
+                Field Path:   metadata.uid
+          Env From:
+            Secret Ref:
+              Name:           mysql-router-k8s-application-config
+          Image:              jujusolutions/jujud-operator:3.1.5
+          Image Pull Policy:  IfNotPresent
+          Name:               charm-init
+          Resources:
+          Termination Message Path:    /dev/termination-log
+          Termination Message Policy:  File
+          Volume Mounts:
+            Mount Path:  /var/lib/juju
+            Name:        charm-data
+            Sub Path:    var/lib/juju
+            Mount Path:  /charm/bin
+            Name:        charm-data
+            Sub Path:    charm/bin
+            Mount Path:  /charm/containers
+            Name:        charm-data
+            Sub Path:    charm/containers
+            Mount Path:  /containeragent/pebble
+            Name:        charm-data
+            Sub Path:    containeragent/pebble
+          Working Dir:   /var/lib/juju
+        Node Selector:
+          kubernetes.io/arch:  amd64
+        Restart Policy:        Always
+        Scheduler Name:        default-scheduler
+        Security Context:
+        Service Account:                   mysql-router-k8s
+        Service Account Name:              mysql-router-k8s
+        Termination Grace Period Seconds:  300
+        Volumes:
+          Empty Dir:
+          Name:  charm-data
+Kind:            ControllerRevision
+Metadata:
+  Creation Timestamp:  2023-09-14T18:33:32Z
+  Owner References:
+    API Version:           apps/v1
+    Block Owner Deletion:  true
+    Controller:            true
+    Kind:                  StatefulSet
+    Name:                  mysql-router-k8s
+    UID:                   b5f81092-a543-47f1-b7d3-40a6bca81853
+  Resource Version:        36127
+  UID:                     f6fb7080-5ea1-4fd5-80fe-aaa0645e64ea
+Revision:                  1
+Events:                    <none>
