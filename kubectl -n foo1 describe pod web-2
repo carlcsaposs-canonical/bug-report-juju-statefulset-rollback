@@ -1,0 +1,60 @@
+Name:             web-2
+Namespace:        foo1
+Priority:         0
+Service Account:  default
+Node:             dev-k8s/10.150.0.51
+Start Time:       Fri, 15 Sep 2023 12:58:04 +0000
+Labels:           app=nginx
+                  controller-revision-hash=web-b99dd8d65
+                  statefulset.kubernetes.io/pod-name=web-2
+Annotations:      cni.projectcalico.org/containerID: e91f97c0b7328242d62bbfd77261829d9829669b2e557b77645b2f24e714337a
+                  cni.projectcalico.org/podIP: 10.1.229.124/32
+                  cni.projectcalico.org/podIPs: 10.1.229.124/32
+Status:           Running
+IP:               10.1.229.124
+IPs:
+  IP:           10.1.229.124
+Controlled By:  StatefulSet/web
+Containers:
+  nginx:
+    Container ID:   containerd://d08ccdaa6f1a432db0892883869e0c830a8878e3dc6ddfabe984309c9fce0e93
+    Image:          registry.k8s.io/nginx-slim:0.8
+    Image ID:       sha256:80df3455afab6379010336bb9b49df4f169943fa14e774cf5b2065ded75c95f3
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Fri, 15 Sep 2023 12:58:05 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /usr/share/nginx/html from www (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dgpz8 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  www:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  www-web-2
+    ReadOnly:   false
+  kube-api-access-dgpz8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  92s   default-scheduler  Successfully assigned foo1/web-2 to dev-k8s
+  Normal  Pulled     92s   kubelet            Container image "registry.k8s.io/nginx-slim:0.8" already present on machine
+  Normal  Created    92s   kubelet            Created container nginx
+  Normal  Started    92s   kubelet            Started container nginx

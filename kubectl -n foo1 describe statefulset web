@@ -1,0 +1,37 @@
+Name:               web
+Namespace:          foo1
+CreationTimestamp:  Fri, 15 Sep 2023 12:57:43 +0000
+Selector:           app=nginx
+Labels:             <none>
+Annotations:        <none>
+Replicas:           3 desired | 3 total
+Update Strategy:    RollingUpdate
+  Partition:        2
+Pods Status:        3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        registry.k8s.io/nginx-slim:0.8
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:
+      /usr/share/nginx/html from www (rw)
+  Volumes:  <none>
+Volume Claims:
+  Name:          www
+  StorageClass:
+  Labels:        <none>
+  Annotations:   <none>
+  Capacity:      1Gi
+  Access Modes:  [ReadWriteOnce]
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  115s  statefulset-controller  create Claim www-web-0 Pod web-0 in StatefulSet web success
+  Normal  SuccessfulCreate  115s  statefulset-controller  create Pod web-0 in StatefulSet web successful
+  Normal  SuccessfulCreate  107s  statefulset-controller  create Claim www-web-1 Pod web-1 in StatefulSet web success
+  Normal  SuccessfulCreate  107s  statefulset-controller  create Pod web-1 in StatefulSet web successful
+  Normal  SuccessfulCreate  100s  statefulset-controller  create Claim www-web-2 Pod web-2 in StatefulSet web success
+  Normal  SuccessfulCreate  100s  statefulset-controller  create Pod web-2 in StatefulSet web successful
