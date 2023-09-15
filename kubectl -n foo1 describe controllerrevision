@@ -1,7 +1,7 @@
-Name:         web-b99dd8d65
+Name:         web-6fcc8d5bd
 Namespace:    foo1
 Labels:       app=nginx
-              controller.kubernetes.io/hash=b99dd8d65
+              controller.kubernetes.io/hash=6fcc8d5bd
 Annotations:  <none>
 API Version:  apps/v1
 Data:
@@ -14,7 +14,7 @@ Data:
           App:  nginx
       Spec:
         Containers:
-          Image:              registry.k8s.io/nginx-slim:0.8
+          Image:              registry.k8s.io/nginx-slim:0.9
           Image Pull Policy:  IfNotPresent
           Name:               nginx
           Ports:
@@ -34,7 +34,7 @@ Data:
         Termination Grace Period Seconds:  30
 Kind:                                      ControllerRevision
 Metadata:
-  Creation Timestamp:  2023-09-15T12:57:43Z
+  Creation Timestamp:  2023-09-15T12:59:51Z
   Owner References:
     API Version:           apps/v1
     Block Owner Deletion:  true
@@ -42,7 +42,7 @@ Metadata:
     Kind:                  StatefulSet
     Name:                  web
     UID:                   387a197e-4063-4758-9003-bcae6c42dd0a
-  Resource Version:        52240
-  UID:                     3d3225e2-1c35-4bf1-bc17-58550e237bde
-Revision:                  1
+  Resource Version:        52647
+  UID:                     2e6c2f82-8b59-4e50-96fc-740460094183
+Revision:                  2
 Events:                    <none>

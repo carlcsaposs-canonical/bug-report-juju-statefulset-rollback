@@ -1,2 +1,3 @@
 NAME            CONTROLLER             REVISION   AGE
-web-b99dd8d65   statefulset.apps/web   1          116s
+web-b99dd8d65   statefulset.apps/web   1          3m32s
+web-6fcc8d5bd   statefulset.apps/web   2          84s
