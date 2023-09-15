@@ -12,7 +12,7 @@ Pod Template:
   Labels:  app=nginx
   Containers:
    nginx:
-    Image:        registry.k8s.io/nginx-slim:0.9
+    Image:        registry.k8s.io/nginx-slim:0.8
     Port:         80/TCP
     Host Port:    0/TCP
     Environment:  <none>
@@ -29,10 +29,10 @@ Volume Claims:
 Events:
   Type    Reason            Age                  From                    Message
   ----    ------            ----                 ----                    -------
-  Normal  SuccessfulCreate  3m29s                statefulset-controller  create Claim www-web-0 Pod web-0 in StatefulSet web success
-  Normal  SuccessfulCreate  3m29s                statefulset-controller  create Pod web-0 in StatefulSet web successful
-  Normal  SuccessfulCreate  3m21s                statefulset-controller  create Claim www-web-1 Pod web-1 in StatefulSet web success
-  Normal  SuccessfulCreate  3m21s                statefulset-controller  create Pod web-1 in StatefulSet web successful
-  Normal  SuccessfulCreate  3m14s                statefulset-controller  create Claim www-web-2 Pod web-2 in StatefulSet web success
-  Normal  SuccessfulDelete  81s                  statefulset-controller  delete Pod web-2 in StatefulSet web successful
-  Normal  SuccessfulCreate  80s (x2 over 3m14s)  statefulset-controller  create Pod web-2 in StatefulSet web successful
+  Normal  SuccessfulCreate  5m5s                 statefulset-controller  create Claim www-web-0 Pod web-0 in StatefulSet web success
+  Normal  SuccessfulCreate  5m5s                 statefulset-controller  create Pod web-0 in StatefulSet web successful
+  Normal  SuccessfulCreate  4m57s                statefulset-controller  create Claim www-web-1 Pod web-1 in StatefulSet web success
+  Normal  SuccessfulCreate  4m57s                statefulset-controller  create Pod web-1 in StatefulSet web successful
+  Normal  SuccessfulCreate  4m50s                statefulset-controller  create Claim www-web-2 Pod web-2 in StatefulSet web success
+  Normal  SuccessfulDelete  84s (x2 over 2m57s)  statefulset-controller  delete Pod web-2 in StatefulSet web successful
+  Normal  SuccessfulCreate  82s (x3 over 4m50s)  statefulset-controller  create Pod web-2 in StatefulSet web successful
