@@ -1,7 +1,7 @@
-Name:         mysql-router-k8s-59895f95f
+Name:         mysql-router-k8s-64855dfffd
 Namespace:    foo1
 Labels:       app.kubernetes.io/name=mysql-router-k8s
-              controller.kubernetes.io/hash=59895f95f
+              controller.kubernetes.io/hash=64855dfffd
 Annotations:  app.juju.is/uuid: 9b3093c4
               controller.juju.is/id: d1a86a38-5f8d-4880-8af6-a5a0270f3e5f
               juju.is/version: 3.1.5
@@ -148,7 +148,7 @@ Data:
             --containeragent-pebble-dir
             /containeragent/pebble
             --charm-modified-version
-            1
+            2
             --data-dir
             /var/lib/juju
             --bin-dir
@@ -204,7 +204,7 @@ Data:
           Name:  charm-data
 Kind:            ControllerRevision
 Metadata:
-  Creation Timestamp:  2023-09-15T13:29:27Z
+  Creation Timestamp:  2023-09-15T13:33:16Z
   Owner References:
     API Version:           apps/v1
     Block Owner Deletion:  true
@@ -212,7 +212,7 @@ Metadata:
     Kind:                  StatefulSet
     Name:                  mysql-router-k8s
     UID:                   bc10d7ce-6000-4aa3-917f-9b4798aabc84
-  Resource Version:        46878
-  UID:                     68ef82dc-860a-4331-87a6-3483e3d9f455
-Revision:                  2
+  Resource Version:        47350
+  UID:                     931c856d-3f4d-454d-8428-3da5831c3061
+Revision:                  3
 Events:                    <none>
