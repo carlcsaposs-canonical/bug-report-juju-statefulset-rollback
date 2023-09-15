@@ -1,4 +1,4 @@
-ame:               mysql-router-k8s
+Name:               mysql-router-k8s
 Namespace:          foo1
 CreationTimestamp:  Fri, 15 Sep 2023 13:28:08 +0000
 Selector:           app.kubernetes.io/name=mysql-router-k8s
@@ -30,7 +30,7 @@ Pod Template:
       --containeragent-pebble-dir
       /containeragent/pebble
       --charm-modified-version
-      0
+      1
       --data-dir
       /var/lib/juju
       --bin-dir
@@ -97,8 +97,9 @@ Pod Template:
     SizeLimit:  <unset>
 Volume Claims:  <none>
 Events:
-  Type    Reason            Age   From                    Message
-  ----    ------            ----  ----                    -------
-  Normal  SuccessfulCreate  58s   statefulset-controller  create Pod mysql-router-k8s-0 in StatefulSet mysql-router-k8s successful
-  Normal  SuccessfulCreate  49s   statefulset-controller  create Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
-  Normal  SuccessfulCreate  49s   statefulset-controller  create Pod mysql-router-k8s-1 in StatefulSet mysql-router-k8s successful
+  Type    Reason            Age                  From                    Message
+  ----    ------            ----                 ----                    -------
+  Normal  SuccessfulCreate  2m53s                statefulset-controller  create Pod mysql-router-k8s-0 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulCreate  2m44s                statefulset-controller  create Pod mysql-router-k8s-1 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulDelete  94s                  statefulset-controller  delete Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
+  Normal  SuccessfulCreate  92s (x2 over 2m44s)  statefulset-controller  create Pod mysql-router-k8s-2 in StatefulSet mysql-router-k8s successful
